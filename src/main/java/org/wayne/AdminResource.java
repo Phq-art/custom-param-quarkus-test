@@ -27,20 +27,20 @@ public class AdminResource {
 
     @GET
     @Path("/custom-role-ep")
-    @Produces(MediaType.APPLICATION_JSON)
-    public void getRoles(@Context KeycloakRoleContext keycloakRoleContext) {
-        LOG.info("adsjlksajdl");
-        Set<String> roles = keycloakRoleContext.getRoles();
-    }
-
-    @GET
-    @Path("/custom-role-ep-param")
     @Consumes(MediaType.APPLICATION_JSON)
     public Collection<String> customEp(@KeycloakRole(realm = "profiler", role = "view-all") Set<String> userRoles) {
         LOG.info("JWT: " + jwt);
         LOG.info("User roles: " + userRoles);
         return userRoles;
     }
+
+//    @GET
+//    @Path("/custom-role-ep")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public void getRoles(@Context KeycloakRoleContext keycloakRoleContext) {
+//        LOG.info("adsjlksajdl");
+//        Set<String> roles = keycloakRoleContext.getRoles();
+//    }
 
     @GET
     @RolesAllowed("view-all")
